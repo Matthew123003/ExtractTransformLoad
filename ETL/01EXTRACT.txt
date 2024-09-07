@@ -1,0 +1,31 @@
+ETL stands for Extract, Transform and Load. An ETL tool extracts the 
+data from different RDBMS source systems, transforms the data like 
+applying calculations, concatenate, etc. and then load the data to Data
+ Warehouse system. The data is loaded in the DW system in the form of 
+ dimension and fact tables.
+
+
+Extraction
+
+    A staging area is required during ETL load. There are various 
+    reasons why staging area is required.
+
+    The source systems are only available for specific period of time 
+    to extract data. This period of time is less than the total data-load
+     time. Therefore, staging area allows you to extract the data from
+      the source system and keeps it in the staging area before the time
+       slot ends.
+
+    Staging area is required when you want to get the data from multiple
+     data sources together or if you want to join two or more systems
+      together. For example, you will not be able to perform a SQL query
+       joining two tables from two physically different databases.
+
+    Data extractions’ time slot for different systems vary as per the
+     time zone and operational hours.
+
+    Data extracted from source systems can be used in multiple data
+     warehouse system, Operation Data stores, etc.
+
+    ETL allows you to perform complex transformations and requires 
+    extra area to store the data.
