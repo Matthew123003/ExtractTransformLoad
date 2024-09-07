@@ -1,3 +1,6 @@
 [submodule "ReactNative"]
 	path = ReactNative
 	url = https://github.com/Matthew123003/ExtractTransformLoad.git
+[submodule "ExtractTransformLoad"]
+	path = ExtractTransformLoad
+	url = https://github.com/Matthew123003/ExtractTransformLoad.git
