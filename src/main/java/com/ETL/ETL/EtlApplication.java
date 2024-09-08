@@ -10,4 +10,6 @@ public class EtlApplication {
 		SpringApplication.run(EtlApplication.class, args);
 	}
 
+	// INSTALLED KAFKA LOCALLY
+
 }
