@@ -12,4 +12,18 @@ public class EtlApplication {
 
 	// INSTALLED KAFKA LOCALLY
 
+	// brew install zookeeper
+	// brew services start zookeeper
+	// brew services stop zookeeper
+
+	// brew install kafka
+	// brew services start kafka
+	// brew services stop kafka
+
+	// Configure Kafka for Development
+	// You may want to configure the server.properties and other Kafka settings. The configuration file can be found at:
+	// bash
+	// /usr/local/etc/kafka/server.properties
+
+
 }
