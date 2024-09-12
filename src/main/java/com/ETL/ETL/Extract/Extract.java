@@ -36,6 +36,10 @@ public class Extract {
             // Connect to the database
             connection = DriverManager.getConnection(jdbcUrl, username, password);
             statement = connection.createStatement();
+
+            // Execute a query to extract data
+            String query = "SELECT id, name, value FROM ff7_characters";
+            resultSet = statement.executeQuery(query);
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
