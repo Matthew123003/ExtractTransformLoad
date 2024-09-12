@@ -2,6 +2,7 @@ package com.ETL.ETL.Extract;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
@@ -30,7 +31,20 @@ public class Extract {
         Statement statement = null;
         ResultSet resultSet = null;
 
-        
+        try{
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            // Close resources
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
     };
 
