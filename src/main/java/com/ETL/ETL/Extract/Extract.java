@@ -18,6 +18,9 @@ public class Extract {
         this.producer = new KafkaProducer<>(props);
     };
 
-    
+    // Extract data from a database and send to Kafka
+    public void extractDataFromDatabase() {
+        
+    };
 
 }
