@@ -38,7 +38,7 @@ public class Extract {
             statement = connection.createStatement();
 
             // Execute a query to extract data
-            String query = "SELECT id, name, value FROM ff7_characters";
+            String query = "SELECT name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
         }catch(SQLException e){
             e.printStackTrace();
