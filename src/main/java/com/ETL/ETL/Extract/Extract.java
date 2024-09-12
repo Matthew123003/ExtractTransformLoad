@@ -40,6 +40,8 @@ public class Extract {
             // Execute a query to extract data
             String query = "SELECT name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
+
+            
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
