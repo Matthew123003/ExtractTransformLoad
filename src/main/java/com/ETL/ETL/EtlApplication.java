@@ -28,6 +28,7 @@ public class EtlApplication {
 	// You may want to configure the server.properties and other Kafka settings. The configuration file can be found at:
 	// bash
 	// /usr/local/etc/kafka/server.properties
+	// Kafka Environment Configured
 
 
 }
