@@ -41,7 +41,13 @@ public class Extract {
             String query = "SELECT name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
 
-            
+            // Process the result set and send each row to Kafka
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                double value = resultSet.getDouble("value");
+
+                
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
