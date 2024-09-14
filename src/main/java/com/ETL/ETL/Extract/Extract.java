@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Properties;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class Extract {
 
@@ -47,7 +48,14 @@ public class Extract {
                 String name = resultSet.getString("name");
                 double value = resultSet.getDouble("value");
 
-                
+                // Create a record (in JSON format, for example) to send to Kafka
+                String record = String.format("{\"id\": %d, \"name\": \"%s\", \"value\": %.2f}", id, name, value);
+
+                // Send the record to Kafka
+                producer.send(new ProducerRecord<>(TOPIC, Integer.toString(id), record));
+
+                System.out.println("Sent record to Kafka: " + record);
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
