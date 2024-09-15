@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -39,17 +38,18 @@ public class Extract {
             statement = connection.createStatement();
 
             // Execute a query to extract data
-            String query = "SELECT name FROM ff7_characters";
+            String query = "SELECT id, first_name, last_name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
 
             // Process the result set and send each row to Kafka
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                double value = resultSet.getDouble("value");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+
 
                 // Create a record (in JSON format, for example) to send to Kafka
-                String record = String.format("{\"id\": %d, \"name\": \"%s\", \"value\": %.2f}", id, name, value);
+                String record = String.format("{\"id\": %d, \"first_name\": \"%s\", \"last_name\": \"%s\"}", id, firstName, lastName);
 
                 // Send the record to Kafka
                 producer.send(new ProducerRecord<>(TOPIC, Integer.toString(id), record));
