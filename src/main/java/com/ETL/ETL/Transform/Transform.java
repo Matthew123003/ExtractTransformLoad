@@ -16,6 +16,12 @@ public class Transform {
         this.producer = new KafkaProducer<>(props);
     }
 
+    // This method transforms the first and last names into full name and makes them uppercase
+    public String transformData(String firstName, String lastName) {
+        String fullName = firstName + " " + lastName;
+        return fullName.toUpperCase();  // Transformation logic: concatenating and converting to uppercase
+    }
+
     
 
 }
