@@ -2,6 +2,7 @@ package com.ETL.ETL.Transform;
 
 import java.util.Properties;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class Transform {
     private static final String TOPIC = "transformed_ff7_topic";
@@ -20,6 +21,17 @@ public class Transform {
     public String transformData(String firstName, String lastName) {
         String fullName = firstName + " " + lastName;
         return fullName.toUpperCase();  // Transformation logic: concatenating and converting to uppercase
+    }
+
+    // This method sends transformed data to Kafka
+    public void sendTransformedDataToKafka(int id, String transformedData) {
+        // Create the transformed record
+        String record = String.format("{\"id\": %d, \"name\": \"%s\"}", id, transformedData);
+
+        // Send the transformed data to Kafka
+        producer.send(new ProducerRecord<>(TOPIC, Integer.toString(id), record));
+
+        System.out.println("Sent transformed record to Kafka: " + record);
     }
 
     
