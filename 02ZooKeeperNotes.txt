@@ -1,4 +1,4 @@
-Certainly! Zookeeper is a critical component in many distributed systems,
+Zookeeper is a critical component in many distributed systems,
  including Apache Kafka. Here's a detailed explanation of what Zookeeper
   does and why it is needed for Kafka:
 
