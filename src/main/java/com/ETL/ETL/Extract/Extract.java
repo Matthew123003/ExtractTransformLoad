@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.ETL.ETL.Load.Load;
 import com.ETL.ETL.Transform.Transform;
 
 public class Extract {
