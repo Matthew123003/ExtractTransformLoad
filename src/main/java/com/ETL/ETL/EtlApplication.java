@@ -3,11 +3,15 @@ package com.ETL.ETL;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.ETL.ETL.Extract.Extract;
+
 @SpringBootApplication
 public class EtlApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EtlApplication.class, args);
+		Extract extractor = new Extract();
+        extractor.extractDataFromDatabase();
 	}
 
 	// INSTALLED KAFKA LOCALLY
@@ -92,7 +96,5 @@ public class EtlApplication {
 
 // LIMIT RETENTION TO 10GB
 // kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config retention.bytes=10737418240 --bootstrap-server localhost:9092
-
-
 
 }
