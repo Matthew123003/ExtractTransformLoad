@@ -83,4 +83,15 @@ public class Extract {
 // kafka-topics.sh --list --bootstrap-server localhost:9092
 // DESCRIBE TOPIC
 // kafka-topics.sh --describe --topic ff7_topic --bootstrap-server localhost:9092
+// ADJUST TOPIC PARTITIONS
+// kafka-topics.sh --alter --topic ff7_topic --partitions <new_partition_count> --bootstrap-server localhost:9092
+// ADJUST TOPIC REPLICATION FACTOR
+// Generate Assignment Plan
+// kafka-reassign-partitions.sh --generate --topics-to-move-json-file topics.json --broker-list <broker_ids> --bootstrap-server localhost:9092
+// Execute Assignment Plan
+// kafka-reassign-partitions.sh --execute --reassignment-json-file reassignment.json --bootstrap-server localhost:9092
+// ADJUST TOPIC CONFIGURATIONS
+// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config <config_key>=<value> --bootstrap-server localhost:9092
+// ADJUST TOPIC SIZE TO 512MB
+// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config segment.bytes=536870912 --bootstrap-server localhost:9092
 
