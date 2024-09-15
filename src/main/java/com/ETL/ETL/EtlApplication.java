@@ -53,9 +53,13 @@ public class EtlApplication implements CommandLineRunner{
 
 // START ZOOKEEPER
 // zookeeper-server-start.sh /path/to/kafka/config/zookeeper.properties
+// brew services start zookeeper
+// brew services stop zookeeper
 
 // START KAFKA
 // kafka-server-start.sh /path/to/kafka/config/server.properties
+// brew services start kafka
+// brew services stop kafka
 
 // CREATE THE TOPIC
 // kafka-topics.sh --create --topic ff7_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
