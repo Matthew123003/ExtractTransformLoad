@@ -62,16 +62,17 @@ public class EtlApplication implements CommandLineRunner{
 // brew services stop kafka
 
 // CREATE THE TOPIC
-// kafka-topics.sh --create --topic ff7_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-topics --create --topic <TOPIC NAME> --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
 
 // VERFIY TOPIC CREATION
-// kafka-topics.sh --list --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-topics --list --bootstrap-server localhost:9092
 
 // DESCRIBE TOPIC
-// kafka-topics.sh --describe --topic ff7_topic --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-topics --describe --topic ff7_topic --bootstrap-server localhost:9092
 
 // ADJUST TOPIC PARTITIONS
-// kafka-topics.sh --alter --topic ff7_topic --partitions <new_partition_count> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-topics --alter --topic ff7_topic --partitions <new_partition_count> --bootstrap-server localhost:9092
 
 // ADJUST TOPIC REPLICATION FACTOR
 // Generate Assignment Plan
