@@ -19,7 +19,7 @@ public class Load {
         // Initialize Kafka producer
         this.producer = new KafkaProducer<>(props);
     }
-    
+
     // Load the transformed data to Kafka
     public void loadDataToKafka(int id, String transformedData) {
         // Create a producer record to send data to the Kafka topic
@@ -35,5 +35,5 @@ public class Load {
     public void close() {
         producer.close();
     }
-
+    
 }
