@@ -76,45 +76,45 @@ public class EtlApplication implements CommandLineRunner{
 
 // ADJUST TOPIC REPLICATION FACTOR
 // Generate Assignment Plan
-// kafka-reassign-partitions.sh --generate --topics-to-move-json-file topics.json --broker-list <broker_ids> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-reassign-partitions --generate --topics-to-move-json-file topics.json --broker-list <broker_ids> --bootstrap-server localhost:9092
 // Execute Assignment Plan
-// kafka-reassign-partitions.sh --execute --reassignment-json-file reassignment.json --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-reassign-partitions --execute --reassignment-json-file reassignment.json --bootstrap-server localhost:9092
 
 // ADJUST TOPIC CONFIGURATIONS
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config <config_key>=<value> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config <config_key>=<value> --bootstrap-server localhost:9092
 
 // ADJUST TOPIC SIZE TO 512MB
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config segment.bytes=536870912 --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config segment.bytes=536870912 --bootstrap-server localhost:9092
 
 // ADJUST RETENTION TIME OF TOPIC
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config retention.ms=<retention_time_in_ms> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config retention.ms=<retention_time_in_ms> --bootstrap-server localhost:9092
 
 // ADJUST RETENTION TIME TO 2 DAYS 72800000ms
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config retention.ms=172800000 --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config retention.ms=172800000 --bootstrap-server localhost:9092
 
 // ADJUST CLEANUP POLICY
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config cleanup.policy=<policy> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config cleanup.policy=<policy> --bootstrap-server localhost:9092
 
 // ENABLE LOG COMPACTION
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config cleanup.policy=compact --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config cleanup.policy=compact --bootstrap-server localhost:9092
 
 // SET TO DELETE OLD LOGS AFTER RETENTION TIME
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config cleanup.policy=delete --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config cleanup.policy=delete --bootstrap-server localhost:9092
 
 // ADJUST MESSAGE SIZE
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config max.message.bytes=<size_in_bytes> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config max.message.bytes=<size_in_bytes> --bootstrap-server localhost:9092
 
 // ADJUST MESSAGE SIZE TO 2MB
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config max.message.bytes=2097152 --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config max.message.bytes=2097152 --bootstrap-server localhost:9092
 
 // ADJUST SEGMENT SIZE
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config segment.bytes=<size_in_bytes> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config segment.bytes=<size_in_bytes> --bootstrap-server localhost:9092
 
 // ADJUST SEGMENT SIZE TO 512MB
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config segment.bytes=536870912 --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config segment.bytes=536870912 --bootstrap-server localhost:9092
 
 // ADJUST RETENTION SIZE
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config retention.bytes=<size_in_bytes> --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config retention.bytes=<size_in_bytes> --bootstrap-server localhost:9092
 
 // LIMIT RETENTION TO 10GB
-// kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config retention.bytes=10737418240 --bootstrap-server localhost:9092
+// /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config retention.bytes=10737418240 --bootstrap-server localhost:9092
