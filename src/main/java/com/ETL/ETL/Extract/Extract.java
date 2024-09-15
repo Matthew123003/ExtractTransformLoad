@@ -8,20 +8,23 @@ import java.sql.Statement;
 import java.util.Properties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import com.ETL.ETL.Transform.Transform;
 
 public class Extract {
 
-    private static final String TOPIC = "ff7_topic";
+    private static final String TOPIC = "etl_topic";
     private KafkaProducer<String, String> producer;
+    private Transform transform;
 
-    public Extract(){
+    public Extract() {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");  // Kafka broker
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         this.producer = new KafkaProducer<>(props);
-    };
+        this.transform = new Transform();  // Initialize the transform class
+    }
 
     // Extract data from a database and send to Kafka
     public void extractDataFromDatabase() {
@@ -32,7 +35,7 @@ public class Extract {
         Statement statement = null;
         ResultSet resultSet = null;
 
-        try{
+        try {
             // Connect to the database
             connection = DriverManager.getConnection(jdbcUrl, username, password);
             statement = connection.createStatement();
@@ -41,24 +44,21 @@ public class Extract {
             String query = "SELECT id, first_name, last_name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
 
-            // Process the result set and send each row to Kafka
+            // Process the result set and transform the data
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
 
+                // Transform the data (e.g., combine names and make uppercase)
+                String transformedData = transform.transformData(firstName, lastName);
 
-                // Create a record (in JSON format, for example) to send to Kafka
-                String record = String.format("{\"id\": %d, \"first_name\": \"%s\", \"last_name\": \"%s\"}", id, firstName, lastName);
-
-                // Send the record to Kafka
-                producer.send(new ProducerRecord<>(TOPIC, Integer.toString(id), record));
-
-                System.out.println("Sent record to Kafka: " + record);
+                // Send the transformed data to Kafka
+                transform.sendTransformedDataToKafka(id, transformedData);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             // Close resources
             try {
                 if (resultSet != null) resultSet.close();
@@ -69,7 +69,9 @@ public class Extract {
             }
         }
 
-    };
+        // Close the Kafka producer after finishing
+        transform.close();
+    }
 
 }
 
