@@ -5,28 +5,20 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import com.ETL.ETL.Load.Load;
 import com.ETL.ETL.Transform.Transform;
 
 public class Extract {
 
-    private static final String TOPIC = "etl_topic";
-    private KafkaProducer<String, String> producer;
-    private Transform transform;
+   private Transform transform;
+    private Load load;
 
     public Extract() {
-        Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");  // Kafka broker
-        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-
-        this.producer = new KafkaProducer<>(props);
-        this.transform = new Transform();  // Initialize the transform class
+        this.transform = new Transform();  // Initialize the Transform class
+        this.load = new Load();            // Initialize the Load class
     }
 
-    // Extract data from a database and send to Kafka
+    // Extract data from a database, transform it, and load it to Kafka
     public void extractDataFromDatabase() {
         String jdbcUrl = "jdbc:mysql://localhost:3306/ff7";
         String username = "root";
@@ -44,7 +36,7 @@ public class Extract {
             String query = "SELECT id, first_name, last_name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
 
-            // Process the result set and transform the data
+            // Process the result set
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String firstName = resultSet.getString("first_name");
@@ -53,8 +45,8 @@ public class Extract {
                 // Transform the data (e.g., combine names and make uppercase)
                 String transformedData = transform.transformData(firstName, lastName);
 
-                // Send the transformed data to Kafka
-                transform.sendTransformedDataToKafka(id, transformedData);
+                // Load the transformed data to Kafka
+                load.loadDataToKafka(id, transformedData);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,8 +61,8 @@ public class Extract {
             }
         }
 
-        // Close the Kafka producer after finishing
-        transform.close();
+        // Close the Kafka producer when done
+        load.close();
     }
 
 }
