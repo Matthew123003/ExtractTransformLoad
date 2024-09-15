@@ -11,7 +11,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class Extract {
 
-    private static final String TOPIC = "etl_topic";
+    private static final String TOPIC = "ff7_topic";
     private KafkaProducer<String, String> producer;
 
     public Extract(){
