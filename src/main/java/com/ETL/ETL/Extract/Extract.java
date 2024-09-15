@@ -21,8 +21,8 @@ public class Extract {
     // Extract data from a database and pass it to the transform step
     public void extractDataFromDatabase() {
         String jdbcUrl = "jdbc:mysql://localhost:3306/ff7";
-        String username = "root";
-        String password = "password";
+        String username = "UN";
+        String password = "PW";
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;

@@ -4,17 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
+import org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration;
 import org.springframework.kafka.annotation.EnableKafka;
 import com.ETL.ETL.Extract.Extract;
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {R2dbcAutoConfiguration.class, LiquibaseAutoConfiguration.class})
 @EnableKafka
 public class EtlApplication implements CommandLineRunner{
 
+	@Autowired
 	private final Extract extractor;
 
-    @Autowired
     public EtlApplication(Extract extractor) {
         this.extractor = extractor;  // Inject the Extract bean
     }
@@ -121,3 +123,17 @@ public class EtlApplication implements CommandLineRunner{
 
 // LIMIT RETENTION TO 10GB
 // /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-configs --alter --entity-type topics --entity-name ff7_topic --add-config retention.bytes=10737418240 --bootstrap-server localhost:9092
+
+//FIGURE OUT WHAT IS RUNNING ON A CERTAIN PORT
+// lsof -i :<PORT NUMBER>
+
+// CHECK STATUS OF WHAT IS RUNNING ON A CERTAIN PORT
+// ps -p 51588(PID) -o comm,args
+
+// CHECK ZOOKEEPER STATUS
+// jps | grep QuorumPeerMain
+
+// CHECK KAFKA STATUS
+// jps | grep Kafka
+
+
