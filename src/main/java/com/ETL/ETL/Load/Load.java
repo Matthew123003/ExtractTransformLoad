@@ -31,4 +31,9 @@ public class Load {
         System.out.println("Loaded transformed data to Kafka: " + record);
     }
 
+    // Close the Kafka producer when done
+    public void close() {
+        producer.close();
+    }
+
 }
