@@ -61,6 +61,9 @@ public class EtlApplication implements CommandLineRunner{
 // brew services start kafka
 // brew services stop kafka
 
+// SHOW KAFKA PATH LOCATIONS
+// brew list kafka
+
 // CREATE THE TOPIC
 // /opt/homebrew/Cellar/kafka/3.8.0/bin/kafka-topics --create --topic <TOPIC NAME> --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
 
