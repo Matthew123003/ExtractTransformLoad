@@ -14,27 +14,29 @@ public class EtlApplication {
         extractor.extractDataFromDatabase();
 	}
 
-	// INSTALLED KAFKA LOCALLY
+}
 
-	// brew install zookeeper
-	// brew services start zookeeper
-	// brew services stop zookeeper
-	// START ZOOKEEPER BEFORE STARTING KAFKA
-	// ZOOKEEPER RUNS ON PORT 2181
+// INSTALLED KAFKA LOCALLY
 
-	// brew install kafka
-	// brew services start kafka
-	// brew services stop kafka
-	// STOP KAFKA BEFORE STOPPING ZOOKEEPER
-	// KAFKA RUNS ON PORT 9092
+// brew install zookeeper
+// brew services start zookeeper
+// brew services stop zookeeper
+// START ZOOKEEPER BEFORE STARTING KAFKA
+// ZOOKEEPER RUNS ON PORT 2181
 
-	// Configure Kafka for Development
-	// You may want to configure the server.properties and other Kafka settings. The configuration file can be found at:
-	// bash
-	// /usr/local/etc/kafka/server.properties
-	// Kafka Environment Configured
+// brew install kafka
+// brew services start kafka
+// brew services stop kafka
+// STOP KAFKA BEFORE STOPPING ZOOKEEPER
+// KAFKA RUNS ON PORT 9092
 
-	// START ZOOKEEPER
+// Configure Kafka for Development
+// You may want to configure the server.properties and other Kafka settings. The configuration file can be found at:
+// bash
+// /usr/local/etc/kafka/server.properties
+// Kafka Environment Configured
+
+// START ZOOKEEPER
 // zookeeper-server-start.sh /path/to/kafka/config/zookeeper.properties
 
 // START KAFKA
@@ -96,5 +98,3 @@ public class EtlApplication {
 
 // LIMIT RETENTION TO 10GB
 // kafka-configs.sh --alter --entity-type topics --entity-name ff7_topic --add-config retention.bytes=10737418240 --bootstrap-server localhost:9092
-
-}
