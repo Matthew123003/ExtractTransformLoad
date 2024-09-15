@@ -10,15 +10,13 @@ import com.ETL.ETL.Transform.Transform;
 
 public class Extract {
 
-   private Transform transform;
-    private Load load;
+    private Transform transform;
 
     public Extract() {
         this.transform = new Transform();  // Initialize the Transform class
-        this.load = new Load();            // Initialize the Load class
     }
 
-    // Extract data from a database, transform it, and load it to Kafka
+    // Extract data from a database and pass it to the transform step
     public void extractDataFromDatabase() {
         String jdbcUrl = "jdbc:mysql://localhost:3306/ff7";
         String username = "root";
@@ -36,17 +34,14 @@ public class Extract {
             String query = "SELECT id, first_name, last_name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
 
-            // Process the result set
+            // Process the result set and send data to the transform class
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
 
-                // Transform the data (e.g., combine names and make uppercase)
-                String transformedData = transform.transformData(firstName, lastName);
-
-                // Load the transformed data to Kafka
-                load.loadDataToKafka(id, transformedData);
+                // Send the extracted data to the transform step
+                transform.transformData(id, firstName, lastName);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,11 +55,7 @@ public class Extract {
                 e.printStackTrace();
             }
         }
-
-        // Close the Kafka producer when done
-        load.close();
     }
-
 }
 
 // START ZOOKEEPER
