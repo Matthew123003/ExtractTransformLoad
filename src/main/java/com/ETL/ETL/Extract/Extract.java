@@ -72,3 +72,15 @@ public class Extract {
     };
 
 }
+
+// START ZOOKEEPER
+// zookeeper-server-start.sh /path/to/kafka/config/zookeeper.properties
+// START KAFKA
+// kafka-server-start.sh /path/to/kafka/config/server.properties
+// CREATE THE TOPIC
+// kafka-topics.sh --create --topic ff7_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+// VERFIY TOPIC CREATION
+// kafka-topics.sh --list --bootstrap-server localhost:9092
+// DESCRIBE TOPIC
+// kafka-topics.sh --describe --topic ff7_topic --bootstrap-server localhost:9092
+
