@@ -1,18 +1,31 @@
 package com.ETL.ETL;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.ETL.ETL.Extract.Extract;
 
 
 @SpringBootApplication
-public class EtlApplication {
+public class EtlApplication implements CommandLineRunner{
 
-	public static void main(String[] args) {
-		SpringApplication.run(EtlApplication.class, args);
-		Extract extractor = new Extract();
+	private final Extract extractor;
+
+    @Autowired
+    public EtlApplication(Extract extractor) {
+        this.extractor = extractor;  // Inject the Extract bean
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(EtlApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Start the ETL process after the application starts
         extractor.extractDataFromDatabase();
-	}
+    }
 
 }
 

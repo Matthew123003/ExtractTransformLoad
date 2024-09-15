@@ -5,15 +5,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.springframework.stereotype.Component;
 import com.ETL.ETL.Transform.Transform;
 
 
+@Component
 public class Extract {
 
-    private Transform transform;
+    private final Transform transform;
 
-    public Extract() {
-        this.transform = new Transform();  // Initialize the Transform class
+    public Extract(Transform transform) {
+        this.transform = transform;  // Inject Transform via constructor
     }
 
     // Extract data from a database and pass it to the transform step
@@ -26,15 +28,11 @@ public class Extract {
         ResultSet resultSet = null;
 
         try {
-            // Connect to the database
             connection = DriverManager.getConnection(jdbcUrl, username, password);
             statement = connection.createStatement();
-
-            // Execute a query to extract data
             String query = "SELECT id, first_name, last_name FROM ff7_characters";
             resultSet = statement.executeQuery(query);
 
-            // Process the result set and send data to the transform class
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String firstName = resultSet.getString("first_name");
@@ -46,7 +44,6 @@ public class Extract {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Close resources
             try {
                 if (resultSet != null) resultSet.close();
                 if (statement != null) statement.close();
