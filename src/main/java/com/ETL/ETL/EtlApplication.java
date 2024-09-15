@@ -2,7 +2,6 @@ package com.ETL.ETL;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.ETL.ETL.Extract.Extract;
 
 @SpringBootApplication
