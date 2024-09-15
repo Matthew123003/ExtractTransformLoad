@@ -4,6 +4,7 @@ import java.util.Properties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
+
 public class Load {
 
     private static final String TOPIC = "ff7_topic";  // Kafka topic to load the data
@@ -35,5 +36,5 @@ public class Load {
     public void close() {
         producer.close();
     }
-    
+
 }
